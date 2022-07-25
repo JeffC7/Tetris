@@ -1,9 +1,9 @@
 class SPiece {
     constructor() {
-        this.firstPart = "a4";
-        this.secondPart = "a5";
-        this.thirdPart = "b5";
-        this.fourthPart = "b6";
+        this.firstPart = "a3";
+        this.secondPart = "a4";
+        this.thirdPart = "b4";
+        this.fourthPart = "b5";
     }
 
     autoMoveDownZ() {

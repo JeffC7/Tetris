@@ -1,9 +1,9 @@
 class JPiece {
     constructor() {
-        this.firstPart = "a4";
-        this.secondPart = "b4";
-        this.thirdPart = "b5";
-        this.fourthPart = "b6";
+        this.firstPart = "a3";
+        this.secondPart = "b3";
+        this.thirdPart = "b4";
+        this.fourthPart = "b5";
     }
 
     autoMoveDownJ() {

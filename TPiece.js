@@ -1,9 +1,9 @@
 class TPiece {
     constructor() {
-        this.firstPart = "a5";
-        this.secondPart = "b4";
-        this.thirdPart = "b5";
-        this.fourthPart = "b6";
+        this.firstPart = "a4";
+        this.secondPart = "b3";
+        this.thirdPart = "b4";
+        this.fourthPart = "b5";
     }
 
     autoMoveDownT() {

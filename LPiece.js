@@ -1,9 +1,9 @@
 class LPiece {
     constructor() {
-        this.firstPart = "a6";
-        this.secondPart = "b6";
-        this.thirdPart = "b5";
-        this.fourthPart = "b4";
+        this.firstPart = "a5";
+        this.secondPart = "b5";
+        this.thirdPart = "b4";
+        this.fourthPart = "b3";
     }
 
     autoMoveDownL() {
