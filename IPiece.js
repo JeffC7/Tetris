@@ -1,9 +1,11 @@
 class IPiece {
     constructor() {
-        this.firstPart = "a4";
-        this.secondPart = "b4";
-        this.thirdPart = "c4";
-        this.fourthPart = "d4";
+        this.firstPart = "a3";
+        this.secondPart = "a4";
+        this.thirdPart = "a5";
+        this.fourthPart = "a6";
+        this.horizontal = true;
+        this.count = 0;
     }
     
     drawIPiece() {
@@ -29,6 +31,7 @@ class IPiece {
         this.drawIPiece();
     }
 
+    
     moveLeft() {
         this.undrawIPiece();
         this.firstPart = this.firstPart[0] + String.fromCharCode(this.firstPart[1].charCodeAt(0) - 1);
@@ -52,7 +55,42 @@ class IPiece {
     }
 
     rotatePiece() {
-        
+        if ((this.count % 2 == 0) && this.horizontal) {
+            this.undrawIPiece();
+            this.firstPart = this.firstPart[0] + String.fromCharCode(this.firstPart[1].charCodeAt(0) + 2);
+            this.secondPart = String.fromCharCode(this.firstPart[0].charCodeAt(0) + 1) + this.firstPart[1];
+            this.thirdPart = String.fromCharCode(this.firstPart[0].charCodeAt(0) + 2) + this.firstPart[1];
+            this.fourthPart = String.fromCharCode(this.firstPart[0].charCodeAt(0) + 3) + this.firstPart[1];
+            this.drawIPiece();
+            this.count++;
+            this.horizontal = false;
+        } else if ((this.count % 2 == 1 && this.horizontal)) {
+            this.undrawIPiece();
+            this.firstPart = this.firstPart[0] + String.fromCharCode(this.firstPart[1].charCodeAt(0) + 1);
+            this.secondPart = String.fromCharCode(this.firstPart[0].charCodeAt(0) + 1) + this.firstPart[1];
+            this.thirdPart = String.fromCharCode(this.firstPart[0].charCodeAt(0) + 2) + this.firstPart[1];
+            this.fourthPart = String.fromCharCode(this.firstPart[0].charCodeAt(0) + 3) + this.firstPart[1];
+            this.drawIPiece();
+            this.count++;
+            this.horizontal = false;
+        } else if ((this.count % 2 == 0) && this.horizontal == false) {
+            this.undrawIPiece();
+            this.firstPart = this.firstPart[0] + String.fromCharCode(this.firstPart[1].charCodeAt(0) - 1);
+            this.secondPart = this.firstPart[0] + String.fromCharCode(this.firstPart[1].charCodeAt(0) + 1);
+            this.thirdPart = this.firstPart[0] + String.fromCharCode(this.firstPart[1].charCodeAt(0) + 2);
+            this.fourthPart = this.firstPart[0] + String.fromCharCode(this.firstPart[1].charCodeAt(0) + 3);
+            this.drawIPiece();
+            this.horizontal = true;
+        } else if ((this.count % 2 == 1) && this.horizontal == false) {
+            this.undrawIPiece();
+            this.firstPart = this.firstPart[0] + String.fromCharCode(this.firstPart[1].charCodeAt(0) - 2);
+            this.secondPart = this.firstPart[0] + String.fromCharCode(this.firstPart[1].charCodeAt(0) + 1);
+            this.thirdPart = this.firstPart[0] + String.fromCharCode(this.firstPart[1].charCodeAt(0) + 2);
+            this.fourthPart = this.firstPart[0] + String.fromCharCode(this.firstPart[1].charCodeAt(0) + 3);
+            this.horizontal = true;
+            this.drawIPiece
+        }
+ 
     }
 
 
@@ -61,7 +99,7 @@ class IPiece {
 const piece = new IPiece();
 piece.drawIPiece();
 let i = 1;
-while (i <= 16) {
+while (i <= 19) {
     document.onkeydown = function (event) {
         switch (event.keyCode) {
             case 37: // Left Arrow Key
@@ -71,6 +109,8 @@ while (i <= 16) {
                 piece.moveRight();
                 break;
             // case 38: Up Key
+            case 38:
+                piece.rotatePiece();
             case 40:
                 piece.moveDown();
                 break;
