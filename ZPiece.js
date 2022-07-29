@@ -1,5 +1,6 @@
 class SPiece {
     constructor() {
+        this.name = "S";
         this.firstPart = "a3";
         this.secondPart = "a4";
         this.thirdPart = "b4";

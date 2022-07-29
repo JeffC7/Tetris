@@ -1,5 +1,6 @@
 class TPiece {
     constructor() {
+        this.name = "T";
         this.firstPart = "a4";
         this.secondPart = "b3";
         this.thirdPart = "b4";

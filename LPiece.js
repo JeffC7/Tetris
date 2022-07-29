@@ -1,5 +1,6 @@
 class LPiece {
     constructor() {
+        this.name = "L";
         this.firstPart = "a5";
         this.secondPart = "b5";
         this.thirdPart = "b4";
