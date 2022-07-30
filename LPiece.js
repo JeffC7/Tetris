@@ -1,40 +1,59 @@
-class LPiece {
+import { drawPiece } from "./game.js";
+import { undrawPiece } from "./game.js";
+
+export class LPiece {
     constructor() {
         this.name = "L";
         this.firstPart = "a5";
         this.secondPart = "b5";
         this.thirdPart = "b4";
         this.fourthPart = "b3";
+        this.rotate1 = true;
+        this.rotate2 = false;
+        this.rotate3 = false;
+        this.rotate4 = false;
     }
 
-    autoMoveDownL() {
-        document.getElementById(piece.firstPart).style.backgroundColor = "rgb(35, 35, 35)";
-        document.getElementById(piece.secondPart).style.backgroundColor = "rgb(35, 35, 35)";
-        document.getElementById(piece.thirdPart).style.backgroundColor = "rgb(35, 35, 35)";
-        document.getElementById(piece.fourthPart).style.backgroundColor = "rgb(35, 35, 35)";
-        this.firstPart = String.fromCharCode(this.firstPart[0].charCodeAt(0) + 1) + this.firstPart[1];
-        this.secondPart = String.fromCharCode(this.secondPart[0].charCodeAt(0) + 1) + this.secondPart[1];
-        this.thirdPart = String.fromCharCode(this.thirdPart[0].charCodeAt(0) + 1) + this.thirdPart[1];
-        this.fourthPart = String.fromCharCode(this.fourthPart[0].charCodeAt(0) + 1) + this.fourthPart[1];
-        document.getElementById(piece.firstPart).style.backgroundColor = "orange";
-        document.getElementById(piece.secondPart).style.backgroundColor = "orange";
-        document.getElementById(piece.thirdPart).style.backgroundColor = "orange";
-        document.getElementById(piece.fourthPart).style.backgroundColor = "orange";
+    rotateLPiece() {
+        if (this.rotate1) {
+            undrawPiece();
+            this.firstPart = String.fromCharCode(this.firstPart[0].charCodeAt(0) + 1) + this.firstPart[1];
+            this.secondPart = this.secondPart[0] + String.fromCharCode(this.secondPart[1].charCodeAt(0) - 1);
+            this.thirdPart = String.fromCharCode(this.secondPart[0].charCodeAt(0) - 1) + this.secondPart[1];
+            this.fourthPart = String.fromCharCode(this.thirdPart[0].charCodeAt(0) - 1) + this.thirdPart[1];
+            drawPiece();
+            this.rotate1 = false;
+            this.rotate2 = true;
+        } else if (this.rotate2) {
+            undrawPiece();
+            this.firstPart = this.firstPart[0] + String.fromCharCode(this.firstPart[1].charCodeAt(0) - 2);
+            this.secondPart = String.fromCharCode(this.firstPart[0].charCodeAt(0) - 1) + this.firstPart[1];
+            this.thirdPart = this.secondPart[0] + String.fromCharCode(this.secondPart[1].charCodeAt(0) + 1);
+            this.fourthPart = this.secondPart[0] + String.fromCharCode(this.thirdPart[1].charCodeAt(0) + 1);
+            drawPiece();
+            this.rotate2 = false;
+            this.rotate3 = true;
+        } else if (this.rotate3) {
+            undrawPiece();
+            this.firstPart = String.fromCharCode(this.firstPart[0].charCodeAt(0) - 1) + String.fromCharCode(this.firstPart[1].charCodeAt(0) + 1);
+            this.secondPart = this.firstPart[0] + String.fromCharCode(this.firstPart[1].charCodeAt(0) + 1);
+            this.thirdPart = String.fromCharCode(this.secondPart[0].charCodeAt(0) + 1) + this.secondPart[1];
+            this.fourthPart = String.fromCharCode(this.thirdPart[0].charCodeAt(0) + 1) + this.thirdPart[1];
+            drawPiece();
+            this.rotate3 = false;
+            this.rotate4 = true;
+        } else if (this.rotate4) {
+            undrawPiece();
+            this.firstPart = this.firstPart[0] + String.fromCharCode(this.firstPart[1].charCodeAt(0) + 1);
+            this.secondPart = String.fromCharCode(this.firstPart[0].charCodeAt(0) + 1) + this.firstPart[1];
+            this.thirdPart = this.secondPart[0] + String.fromCharCode(this.secondPart[1].charCodeAt(0) - 1);
+            this.fourthPart = this.thirdPart[0] + String.fromCharCode(this.thirdPart[1].charCodeAt(0) - 1);
+            drawPiece();
+            this.rotate4 = false;
+            this.rotate1 = true;
+        }
     }
 }
-  
-const piece = new LPiece();
-document.getElementById(piece.firstPart).style.backgroundColor = "orange";
-document.getElementById(piece.secondPart).style.backgroundColor = "orange";
-document.getElementById(piece.thirdPart).style.backgroundColor = "orange";
-document.getElementById(piece.fourthPart).style.backgroundColor = "orange";
 
-let i = 1;
-while (i <= 18) {
-setTimeout(() => {
-    piece.autoMoveDownL();
-}, 1000 * i);
-    i++;
-}
 
 

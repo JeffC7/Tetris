@@ -1,9 +1,9 @@
-export class JPiece {
+export class OPiece {
     constructor() {
         this.name = "O";
-        this.firstPart = "a3";
-        this.secondPart = "a4";
-        this.thirdPart = "b3";
-        this.fourthPart = "b4";
+        this.firstPart = "a4";
+        this.secondPart = "a5";
+        this.thirdPart = "b4";
+        this.fourthPart = "b5";
     }
 }

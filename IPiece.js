@@ -1,6 +1,6 @@
 import {drawPiece} from "./game.js";
 import {undrawPiece} from "./game.js";
-// import {autoMoveDown} from "./game.js";
+
 export class IPiece {
     constructor() {
         this.name = "I";

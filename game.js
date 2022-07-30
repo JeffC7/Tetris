@@ -1,5 +1,10 @@
 import {IPiece} from "./IPiece.js";
 import {JPiece} from "./JPiece.js";
+import {LPiece} from "./LPiece.js";
+import {OPiece} from "./OPiece.js";
+import {SPiece} from "./SPiece.js";
+import {ZPiece} from "./ZPiece.js";
+import {TPiece} from "./TPiece.js";
 
 export function drawPiece() {
     if (piece.name == "I") {
@@ -74,7 +79,7 @@ export function moveRight() {
     drawPiece();
 }
 
-const piece = new JPiece();
+const piece = new TPiece();
 // drawPiece();
 let i = 1;
 while (i <= 18) {
@@ -88,7 +93,7 @@ while (i <= 18) {
                 moveRight();
                 break;
             case 38: // Up Arrow Key
-                piece.rotateJPiece();
+                piece.rotateTPiece();
                 break;
             case 40: // Down Arrow Key
                 autoMoveDown();
