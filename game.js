@@ -79,6 +79,16 @@ export function moveRight() {
     drawPiece();
 }
 
+// Create an array of strings
+const listOfPieces = ["IPiece", "JPiece", "SPiece", "OPiece", "LPiece", "ZPiece", "TPiece"];
+
+// to implement:
+// randomly pull an element from this list of the array
+// whatever is pulled out, create that piece and display on the board
+// put pieces in next piece queue:
+// hard-drop (space bar)
+// hold piece (shift key)
+
 const piece = new TPiece();
 // drawPiece();
 let i = 1;
@@ -105,8 +115,6 @@ while (i <= 18) {
     }, 1000 * i);
     i++;
 }
-
-
 
 
 
