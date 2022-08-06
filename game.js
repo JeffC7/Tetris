@@ -12,6 +12,7 @@ export function drawPiece() {
         document.getElementById(piece.secondPart).style.backgroundColor = "cyan";
         document.getElementById(piece.thirdPart).style.backgroundColor = "cyan";
         document.getElementById(piece.fourthPart).style.backgroundColor = "cyan";
+        document.getElementById(piece.firstPart).setAttribute("untaken", "taken");
     } else if (piece.name == "J") {
         document.getElementById(piece.firstPart).style.backgroundColor = "blue";
         document.getElementById(piece.secondPart).style.backgroundColor = "blue";
@@ -62,6 +63,9 @@ export function autoMoveDown() {
 } 
 
 export function moveLeft() {
+    if (piece.firstPart[1] == "0" || piece.secondPart[1] == "0" || piece.thirdPart[1] == "0" || piece.fourthPart[1] == "0") {
+        return;
+    }
     undrawPiece();
     piece.firstPart = piece.firstPart[0] + String.fromCharCode(piece.firstPart[1].charCodeAt(0) - 1);
     piece.secondPart = piece.secondPart[0] + String.fromCharCode(piece.secondPart[1].charCodeAt(0) - 1);
@@ -71,6 +75,9 @@ export function moveLeft() {
 }
 
 export function moveRight() {
+    if (piece.firstPart[1] == "9" || piece.secondPart[1] == "9" || piece.thirdPart[1] == "9" || piece.fourthPart[1] == "9") {
+        return;
+    }
     undrawPiece();
     piece.firstPart = piece.firstPart[0] + String.fromCharCode(piece.firstPart[1].charCodeAt(0) + 1);
     piece.secondPart = piece.secondPart[0] + String.fromCharCode(piece.secondPart[1].charCodeAt(0) + 1);
@@ -89,8 +96,7 @@ const listOfPieces = ["IPiece", "JPiece", "SPiece", "OPiece", "LPiece", "ZPiece"
 // hard-drop (space bar)
 // hold piece (shift key)
 
-const piece = new TPiece();
-// drawPiece();
+const piece = new ZPiece();
 let i = 1;
 while (i <= 18) {
     drawPiece();
@@ -103,7 +109,7 @@ while (i <= 18) {
                 moveRight();
                 break;
             case 38: // Up Arrow Key
-                piece.rotateTPiece();
+                piece.rotateZPiece();
                 break;
             case 40: // Down Arrow Key
                 autoMoveDown();
@@ -115,6 +121,5 @@ while (i <= 18) {
     }, 1000 * i);
     i++;
 }
-
 
 
