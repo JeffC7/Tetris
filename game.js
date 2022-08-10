@@ -96,7 +96,7 @@ const listOfPieces = ["IPiece", "JPiece", "SPiece", "OPiece", "LPiece", "ZPiece"
 // hard-drop (space bar)
 // hold piece (shift key)
 
-const piece = new ZPiece();
+const piece = new LPiece();
 let i = 1;
 while (i <= 18) {
     drawPiece();
@@ -109,16 +109,17 @@ while (i <= 18) {
                 moveRight();
                 break;
             case 38: // Up Arrow Key
-                piece.rotateZPiece();
+                piece.rotateLPiece();
                 break;
             case 40: // Down Arrow Key
                 autoMoveDown();
                 break;
         }
     };
-    setTimeout(() => {
-        autoMoveDown();
-    }, 1000 * i);
+    console.log(i);
+    // setTimeout(() => {
+    //     autoMoveDown();
+    // }, 1000 * i);
     i++;
 }
 

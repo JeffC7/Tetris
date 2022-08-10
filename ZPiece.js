@@ -32,7 +32,7 @@ export class ZPiece {
             this.count++;
             this.horizontal = false;
         } else if ((this.count % 2 == 0) && this.horizontal == false) {
-            if (this.firstPart[1] == "0") {
+            if (this.thirdPart[1] == "0") {
                 undrawPiece();
                 this.firstPart = String.fromCharCode(this.firstPart[0].charCodeAt(0) + 1) + String.fromCharCode(this.firstPart[1].charCodeAt(0) - 1);
                 this.secondPart = this.firstPart[0] + String.fromCharCode(this.firstPart[1].charCodeAt(0) + 1);
