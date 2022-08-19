@@ -6,6 +6,16 @@ import {SPiece} from "./SPiece.js";
 import {ZPiece} from "./ZPiece.js";
 import {TPiece} from "./TPiece.js";
 
+const pieceMap = {
+    
+}
+
+let piece;
+let newArray = [0, 1, 2, 3, 4, 5, 6];
+let pieceArray = [];
+const listOfPieces = ["IPiece", "JPiece", "SPiece", "OPiece", "LPiece", "ZPiece", "TPiece"];
+let random;
+
 //function to draw piece depending on the name of the piece
 export function drawPiece() {
     const colorMap = {
@@ -181,38 +191,70 @@ function freeze() {
     if (document.getElementById(piece.firstPart).getAttribute('taken') == "true" || document.getElementById(piece.secondPart).getAttribute('taken') == "true"
         || document.getElementById(piece.thirdPart).getAttribute('taken') == "true" || document.getElementById(piece.fourthPart).getAttribute('taken') == "true") {
         random = Math.floor(Math.random() * listOfPieces.length);
-        getNewPiece(random);
+        getNewPiece(checkPiece());
+        piece = pieceArray.shift();
         drawPiece();
+        updateDisplay();
     } 
 }
+
+// function to get the next piece. pieces can't repeat but will only appear again after all 7 pieces have been used once.
+function checkPiece() {
+    if (newArray.length != 0) {
+        let randomIndex = Math.floor(Math.random(newArray) * newArray.length);
+        random = newArray[randomIndex];
+        newArray.splice(randomIndex, 1);
+        return random;
+    } else {
+        for (let i = 0; i < 7; i++) {
+            newArray.push(i);
+        }
+        random = Math.floor(Math.random(newArray) * newArray.length);
+        newArray.splice(random, 1);
+        return random;
+    }
+}
+
+
 
 // function that creates the new piece object depending on the random number that is generated
 function getNewPiece(random) {
     if (random == 0) {
-        piece = new IPiece;
+        pieceArray.push(new IPiece);
     } else if (random == 1) {
-        piece = new JPiece;
+        pieceArray.push(new JPiece);
     } else if (random == 2) {
-        piece = new SPiece;
+        pieceArray.push(new SPiece);
     } else if (random == 3) {
-        piece = new OPiece;
+        pieceArray.push(new OPiece);
     } else if (random == 4) {
-        piece = new LPiece;
+        pieceArray.push(new LPiece);
     } else if (random == 5) {
-        piece = new ZPiece;
+        pieceArray.push(new ZPiece);
     } else if (random == 6) {
-        piece = new TPiece;
+        pieceArray.push(new TPiece);
     }
 }
 
-const listOfPieces = ["IPiece", "JPiece", "SPiece", "OPiece", "LPiece", "ZPiece", "TPiece"];
-let random = Math.floor(Math.random() * listOfPieces.length);
+getNewPiece(checkPiece());
+getNewPiece(checkPiece());
+getNewPiece(checkPiece());
+getNewPiece(checkPiece());
+getNewPiece(checkPiece());
+getNewPiece(checkPiece());
+piece = pieceArray.shift();
+updateDisplay();
 
-let piece;
-getNewPiece(random);
-let i = 1;//?
+function updateDisplay() {
+    document.getElementById("next1").innerHTML = `<img src="${pieceArray[0].name}Piece.JPG"></img>`;
+    document.getElementById("next2").innerHTML = `<img src="${pieceArray[1].name}Piece.JPG"></img>`;
+    document.getElementById("next3").innerHTML = `<img src="${pieceArray[2].name}Piece.JPG"></img>`;
+    document.getElementById("next4").innerHTML = `<img src="${pieceArray[3].name}Piece.JPG"></img>`;
+    document.getElementById("next5").innerHTML = `<img src="${pieceArray[4].name}Piece.JPG"></img>`;    
+}
+
 drawPiece();
-// setInterval(autoMoveDown, 200);
+// setInterval(autoMoveDown, 1000);
 document.onkeydown = function (event) {
     switch (event.keyCode) {
         case 37: // Left Arrow Key
@@ -222,22 +264,22 @@ document.onkeydown = function (event) {
             moveRight();
             break;
         case 38: // Up Arrow Key
-            if (random == 0) {
+            if (piece.name === "I") {
                 piece.rotateIPiece();
                 break;
-            } else if (random == 1) {
+            } else if (piece.name === "J") {
                 piece.rotateJPiece();
                 break;
-            } else if (random == 2) {
+            } else if (piece.name === "S") {
                 piece.rotateSPiece();
                 break;
-            } else if (random == 4) {
+            } else if (piece.name === "L") {
                 piece.rotateLPiece();
                 break;
-            } else if (random == 5) {
+            } else if (piece.name === "Z") {
                 piece.rotateZPiece();
                 break;
-            } else if (random == 6) {
+            } else if (piece.name === "T") {
                 piece.rotateTPiece();
                 break;
             }
@@ -245,19 +287,4 @@ document.onkeydown = function (event) {
             autoMoveDown();
             break;
         }
-    // for(let row = 0;row<20;row++){
-    //     for(let col =0;col<9;col++){
-    //         const cell = `${String.fromCharCode('a'.charCodeAt(0) +row)}${col}`;
-    //         const taken = document.getElementById(cell).getAttribute('taken');
-    //         if(!taken){
-    //             document.getElementById(cell).style.backgroundColor = "#000";
-    //         }
-    //         else{
-    //             document.getElementById(cell).style.backgroundColor = "#fff";
-    //         }
-    //     }
-    // }
 };
-// })
-
-console.log("hello");
